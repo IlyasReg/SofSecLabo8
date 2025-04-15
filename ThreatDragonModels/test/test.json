@@ -73,8 +73,6 @@
     ]
 }
 
-# Maak een bijgewerkt JSON-model met diagram-cellen
-threat_dragon_model = {
     "summary": {
         "title": "Werken op de trein",
         "owner": "Security Consultant",
