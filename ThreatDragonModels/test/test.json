@@ -1,153 +1,348 @@
+Ilyas R.
+ilyasr._
+Aan het schermdelen
+
+Ilyas R. — 13/01/2025 20:17
+Mhm chokran anders ik ging da ni wete
+Astro boy — 13/01/2025 20:17
+Hahaha jaa da is
+Drm vroeg ik ook wat die people first was
+Astro boy — 13/01/2025 20:17
+Geen probleem
+Ilyas R. — 13/01/2025 20:18
+Dan is da wel een grote openvraag
+Astro boy — 13/01/2025 20:18
+Ja ik denk dzt gaat staan op 10 punten ofso
+Ilyas R. — 14/02/2025 15:18
+Doorgestuurd
+const express = require("express");
+const path = require("path");
+
+const app = express();
+const PORT = 3000;
+
+app.get("/", (req, res) => {
+  res.cookie("HttpOnlyCookie", "value1", { httpOnly: true });
+  res.cookie("SecureCookie", "value2", { secure: true, sameSite: "Strict" });
+
+  res.sendFile(path.join(__dirname, "index.html"));
+});
+
+app.listen(PORT, () => {
+  console.log(Server is running on http://localhost:${PORT});
+});
+Astro boy heeft een gesprek gestart dat 2 uur duurde. — 2/03/2025 21:57
+Astro boy — 2/03/2025 21:58
+Doorgestuurd
+Bestandstype van bijlage: acrobat
+Labo 4 Oplossing.pdf
+144.62 KB
+Doorgestuurd
+Afbeelding
+Ilyas R. — 2/03/2025 22:35
+sudo amazon-linux-extras enable epel
+sudo yum install -y epel-release
+sudo yum install -y certbot python3-certbot-nginx nginx
+sudo certbot --nginx -d testap.dedyn.io
+Ilyas R. — 2/03/2025 22:53
+./testssl.sh https://testap.dedyn.io/
+git clone --depth 1 https://github.com/drwetter/testssl.sh.git
+GitHub
+GitHub - testssl/testssl.sh: Testing TLS/SSL encryption anywhere on...
+Testing TLS/SSL encryption anywhere on any port . Contribute to testssl/testssl.sh development by creating an account on GitHub.
+GitHub - testssl/testssl.sh: Testing TLS/SSL encryption anywhere on...
+sudo yum install git -y
+Ilyas R. — 2/03/2025 23:01
+Doorgestuurd
+#!/bin/bash
+
+# Dit script installeert Certbot, past de server_name aan in NGINX en configureert Let's Encrypt SSL op Amazon Linux 2
+
+# Controleer of je root-rechten hebt
+if [ "$(id -u)" -ne 0 ]; then
+Uitvouwen
+message.txt
+3 KB
+sudo nano /etc/nginx/nginx.conf
+ssl_protocols TLSv1.2 TLSv1.3;
+ssl_prefer_server_ciphers on;
+ssl_ciphers 'EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH';
+ssl_session_timeout 1d;
+ssl_session_cache shared:MozSSL:10m;
+ssl_session_tickets off;
+add_header X-Frame-Options DENY;
+add_header X-Content-Type-Options nosniff;
+add_header X-XSS-Protection "1; mode=block";
+add_header Content-Security-Policy "default-src 'self'";
+Astro boy — 2/03/2025 23:26
+https://carbon.now.sh/
+Carbon
+Carbon is the easiest way to create and share beautiful images of your source code.
+Afbeelding
+Ilyas R. — 21/03/2025 14:49
+Doorgestuurd
+Afbeelding
+Astro boy — 21/03/2025 15:08
+wjjjwww
+das u gwn gelukt?
+is dat oef 3?
+Doorgestuurd
+Labo 5
+Bestandstype van bijlage: acrobat
+Oplossing.pdf
+1.03 MB
+heb net dit van iemand gekregn, is alles behalve oef 3
+Ilyas R. — 21/03/2025 15:23
+jaaa bro ik heb echt moeite er in gestoken
+Astro boy — 21/03/2025 15:28
+pfffff zot man
+kan je ons blij maken aub in deze gezegende maand?
+Ilyas R. — 21/03/2025 15:53
+hahaha klach maar heb gewoon screen gekregen
+Ilyas R. — 21/03/2025 17:58
+bij de ze opdracht "Exercise 1
+
+Goal:
+Understand federation protocols
+
+Exercise: 
+Get https://github.com/Mich-b/ModernACREST up and running. Please read the readme of that project to understand how it should be setup. You need docker and docker-compose for this.
+Since we are using local development certificates, you will be getting some certificate errors – ignore them if possible. (Only ignore certificate errors if you know why they appear and never provide confidential information on such websites).
+Browse to http://singlepageapp:8082/ (provided the docker containers are listening on the hostname 'singlepageapp'). Credentials to login with OIDC are: 
+username:student1
+password:Student
+Investigate the network flows using Burp suite during log-in. Take a screenshot. Match it to the sequence diagrams that are given in  https://apwt.gitbook.io/software-security/access-control-advanced/000introauthenticationadvanced/001federation#openid-connect-oidc
+During your investigation above, you should have noticed the code_challenge and code_verifier parameters. Explain in your own words what they are, how they work, and why they are useful. Add screenshots from Burp Suite to your explanation. 
+Deliverables:
+Screenshot of running docker containers (docker ps output or screenshot of docker desktop)
+Visual mapping of the screenshot of the network flows to the sequence diagram (edit it in Paint or Powerpoint and use rectangles and arrows to connect relevant HTTP requests/responses to parts of the sequence diagram. 
+Explanation of code_challenge and code_verified parameters. " kan je aub bij de diagram die ik moest aanmaken gewoon een mermaid code geven die ik dan kan omzetten
+GitHub
+GitHub - Mich-b/websec-ModernACREST
+Contribute to Mich-b/websec-ModernACREST development by creating an account on GitHub.
+GitHub - Mich-b/websec-ModernACREST
+Federation | Software Security
+sequenceDiagram
+    participant User as User (student1)
+    participant SPA as SinglePageApp
+    participant Auth as Authorization Server
+    participant IDP as Identity Provider
+
+    User->>SPA: Requests login page (username: student1)
+    SPA->>User: Displays login form
+    User->>SPA: Submits credentials (username: student1, password: Student)
+    SPA->>Auth: Sends authorization request with code_challenge
+    Auth->>IDP: Redirects to identity provider
+    IDP->>User: Prompts for authentication (login page)
+    User->>IDP: Submits credentials
+    IDP->>Auth: Redirects back with authorization code
+    Auth->>SPA: Returns authorization code
+    SPA->>Auth: Sends authorization code with code_verifier
+    Auth->>SPA: Returns access token (and ID token)
+    SPA->>User: Grants access to the application (logged in)
+
+    Note right of SPA: The code_challenge and code_verifier are used to prevent attacks, ensuring the request is legitimate.
+Doorgestuurd
+Afbeelding
+Doorgestuurd
+Afbeelding
+Doorgestuurd
+Afbeelding
+Astro boy — 21/03/2025 18:09
+https://juiceshop-websec.herokuapp.com:4430/
+Ilyas R. — 21/03/2025 18:21
+Afbeelding
+Ilyas R. — 28/03/2025 17:47
+Het verschil in de SameSite-cookie resultaten tussen de twee afbeeldingen komt waarschijnlijk door het verschil in hoe de verzoeken worden behandeld door de browser en de SameSite-policy van de cookies. Hier zijn een paar mogelijke verklaringen:
+
+Cross-site vs. Same-site context
+
+In de eerste test ben je waarschijnlijk op de pagina beland via een cross-site request, bijvoorbeeld door een link van een externe site of door een POST-request van een andere domeinnaam. In dat geval worden sommige cookies (zoals StrictCookie en LaxCookie) geblokkeerd.
+
+In de tweede test, waar je de URL rechtstreeks in een nieuwe tab plakte, werd het verzoek als same-site beschouwd. Hierdoor konden de cookies anders worden verwerkt, waardoor bijvoorbeeld StrictCookie en LaxCookie nu wel werden meegestuurd.
+
+SameSite-beperkingen en GET/POST-verschillen
+
+Cookies met SameSite=Strict worden nooit meegestuurd bij cross-site navigatie, maar wel als je de pagina direct opent via een URL in dezelfde site.
+
+Cookies met SameSite=Lax worden wel meegestuurd bij GET-verzoeken, maar niet bij POST-verzoeken. Als de eerste test een POST-request was en de tweede een GET-request, dan zou dit het verschil verklaren.
+Astro boy heeft een gesprek gestart dat 2 uur duurde. — 4/04/2025 23:38
+Astro boy — 5/04/2025 0:02
+Doorgestuurd
+Afbeelding
+
+Elektronica ICT & Toegepaste ICT  •  4/04/2025
+Astro boy — 5/04/2025 0:21
+Afbeelding
+Ilyas R. — 5/04/2025 0:21
+Afbeelding
+Astro boy — 5/04/2025 0:24
+Afbeelding
+Ilyas R. — 5/04/2025 0:25
+Afbeelding
+Astro boy — 5/04/2025 0:27
+Afbeelding
+Afbeelding
+Ilyas R. — 5/04/2025 0:41
+Afbeelding
+Afbeelding
+Ilyas R. — 5/04/2025 0:59
+Afbeelding
+Je hebt een gemiste oproep van Astro boy die 3 minuten duurde. — 14:34
+Astro boy heeft een gesprek gestart. — 14:37
+Astro boy — 15:44
+Afbeelding
 {
-    "summary": {
-        "title": "Werken op de trein",
-        "owner": "Security Consultant",
-        "description": "Threat model voor werknemers die onderweg werken op de trein, m.b.v. STRIDE.",
-        "id": "1",
-        "version": "1.4"
-    },
-    "detail": {
-        "diagrams": [
+  "summary": {
+    "title": "Threat Model - Working on Train",
+    "owner": "Security Consultant",
+    "description": "Threat model voor werknemers die onderweg werken met MS Office Online",
+    "id": "1",
+Uitvouwen
+train-threat-model.json
+4 KB
+﻿
+{
+  "summary": {
+    "title": "Threat Model - Working on Train",
+    "owner": "Security Consultant",
+    "description": "Threat model voor werknemers die onderweg werken met MS Office Online",
+    "id": "1",
+    "diagramId": "diagram-1",
+    "version": "2.0"
+  },
+  "detail": {
+    "diagrams": [
+      {
+        "diagramJson": {
+          "cells": [
             {
-                "title": "Werken op de trein \u2013 Hoofddiagram",
-                "id": "1",
-                "diagramType": "STRIDE",
-                "cells": []
+              "id": "employee",
+              "type": "tm.Actor",
+              "position": {
+                "x": 50,
+                "y": 200
+              },
+              "size": {
+                "width": 120,
+                "height": 60
+              },
+              "attrs": {
+                "label": {
+                  "text": "Employee"
+                }
+              },
+              "z": 1
+            },
+            {
+              "id": "documentProcess",
+              "type": "tm.Process",
+              "position": {
+                "x": 250,
+                "y": 200
+              },
+              "size": {
+                "width": 180,
+                "height": 80
+              },
+              "attrs": {
+                "label": {
+                  "text": "Work on Document\n(MS Office Online)"
+                }
+              },
+              "z": 2
+            },
+            {
+              "id": "cloudStorage",
+              "type": "tm.Store",
+              "position": {
+                "x": 500,
+                "y": 100
+              },
+              "size": {
+                "width": 160,
+                "height": 60
+              },
+              "attrs": {
+                "label": {
+                  "text": "Cloud Storage\n(OneDrive/SharePoint)"
+                }
+              },
+              "z": 3
+            },
+            {
+              "id": "ms365",
+              "type": "tm.Actor",
+              "position": {
+                "x": 500,
+                "y": 300
+              },
+              "size": {
+                "width": 130,
+                "height": 60
+              },
+              "attrs": {
+                "label": {
+                  "text": "Microsoft 365"
+                }
+              },
+              "z": 4
+            },
+            {
+              "id": "flow1",
+              "type": "tm.Flow",
+              "source": {
+                "id": "employee"
+              },
+              "target": {
+                "id": "documentProcess"
+              },
+              "attrs": {
+                "label": {
+                  "text": "Data Flow"
+                }
+              },
+              "z": 5
+            },
+            {
+              "id": "flow2",
+              "type": "tm.Flow",
+              "source": {
+                "id": "documentProcess"
+              },
+              "target": {
+                "id": "cloudStorage"
+              },
+              "attrs": {
+                "label": {
+                  "text": "Data Flow"
+                }
+              },
+              "z": 6
+            },
+            {
+              "id": "flow3",
+              "type": "tm.Flow",
+              "source": {
+                "id": "documentProcess"
+              },
+              "target": {
+                "id": "ms365"
+              },
+              "attrs": {
+                "label": {
+                  "text": "Data Flow"
+                }
+              },
+              "z": 7
             }
-        ],
-        "threats": [
-            {
-                "id": "1",
-                "title": "Vervalste WiFi-hotspot",
-                "type": "Spoofing",
-                "description": "Een aanvaller stelt een nep-WiFi-netwerk in (zoals 'Train WiFi'), zodat gebruikers onbewust verbinding maken.",
-                "mitigation": "Gebruik een VPN, forceer gebruik van bedrijfsnetwerk via vertrouwde toegangspunten.",
-                "modelType": "STRIDE",
-                "status": "Open",
-                "severity": "Medium",
-                "owner": "Security Consultant"
-            },
-            {
-                "id": "2",
-                "title": "Valse loginpagina (phishing)",
-                "type": "Spoofing",
-                "description": "Een valse MS Office 365 loginpagina wordt getoond via de nep-WiFi.",
-                "mitigation": "Gebruik van multifactor-authenticatie, domeinvalidatie en waarschuwingssystemen.",
-                "modelType": "STRIDE",
-                "status": "Open",
-                "severity": "Medium",
-                "owner": "Security Consultant"
-            },
-            {
-                "id": "3",
-                "title": "Man-in-the-middle-aanval op gegevensverkeer",
-                "type": "Tampering",
-                "description": "Verkeer via openbaar WiFi kan onderschept en gemanipuleerd worden.",
-                "mitigation": "Encryptie van alle verkeer (TLS/VPN), HSTS-policy.",
-                "modelType": "STRIDE",
-                "status": "Open",
-                "severity": "Medium",
-                "owner": "Security Consultant"
-            },
-            {
-                "id": "4",
-                "title": "Onbevoegde wijziging van documenten",
-                "type": "Tampering",
-                "description": "Bij samenwerking in MS Office kunnen kwaadwillenden wijzigingen aanbrengen.",
-                "mitigation": "Machtigingen beperken, versiebeheer en auditing inschakelen.",
-                "modelType": "STRIDE",
-                "status": "Open",
-                "severity": "Medium",
-                "owner": "Security Consultant"
-            },
-            {
-                "id": "5",
-                "title": "Ontkennen van gevoelige acties",
-                "type": "Repudiation",
-                "description": "Een gebruiker zegt gevoelige gegevens niet te hebben gedeeld.",
-                "mitigation": "Logging en auditing inschakelen, actiehistoriek bijhouden.",
-                "modelType": "STRIDE",
-                "status": "Open",
-                "severity": "Medium",
-                "owner": "Security Consultant"
-            },
-            {
-                "id": "6",
-                "title": "Afwijzing van gemaakte telefoongesprekken",
-                "type": "Repudiation",
-                "description": "Een werknemer beweert dat hij/zij een vertrouwelijk gesprek niet gevoerd heeft.",
-                "mitigation": "Telefoongesprekken met logging/metadata (geen inhoud) registreren indien wettelijk toegestaan.",
-                "modelType": "STRIDE",
-                "status": "Open",
-                "severity": "Medium",
-                "owner": "Security Consultant"
-            },
-            {
-                "id": "7",
-                "title": "Meeluisteren door andere passagiers",
-                "type": "Information Disclosure",
-                "description": "Gevoelige informatie wordt gehoord tijdens telefoongesprekken.",
-                "mitigation": "Gebruik van headsets, vermijden van gevoelige gesprekken in het openbaar.",
-                "modelType": "STRIDE",
-                "status": "Open",
-                "severity": "Medium",
-                "owner": "Security Consultant"
-            },
-            {
-                "id": "8",
-                "title": "Lezen van schermen door andere reizigers",
-                "type": "Information Disclosure",
-                "description": "Iemand kijkt mee op het scherm van een werknemer.",
-                "mitigation": "Privacyfilters, bewustzijnstraining.",
-                "modelType": "STRIDE",
-                "status": "Open",
-                "severity": "Medium",
-                "owner": "Security Consultant"
-            },
-            {
-                "id": "9",
-                "title": "Geen toegang tot documenten door slechte connectiviteit",
-                "type": "Denial of Service",
-                "description": "Slechte WiFi of VPN blokkeert werk.",
-                "mitigation": "Offline toegang tot bestanden voorzien, failover-oplossingen.",
-                "modelType": "STRIDE",
-                "status": "Open",
-                "severity": "Medium",
-                "owner": "Security Consultant"
-            },
-            {
-                "id": "10",
-                "title": "Overbelasting van VPN door veel externe gebruikers",
-                "type": "Denial of Service",
-                "description": "VPN raakt overbelast tijdens piekuren.",
-                "mitigation": "Load balancing, schaalbare cloud-VPN-oplossingen.",
-                "modelType": "STRIDE",
-                "status": "Open",
-                "severity": "Medium",
-                "owner": "Security Consultant"
-            },
-            {
-                "id": "11",
-                "title": "Toegang tot adminrechten via kwetsbaarheid in MS Office",
-                "type": "Elevation of Privilege",
-                "description": "Een kwetsbaarheid in MS Office Online wordt misbruikt.",
-                "mitigation": "Regelmatige updates, principe van minimale rechten.",
-                "modelType": "STRIDE",
-                "status": "Open",
-                "severity": "Medium",
-                "owner": "Security Consultant"
-            },
-            {
-                "id": "12",
-                "title": "Gebruik van onbeheerde apparaten met verhoogde rechten",
-                "type": "Elevation of Privilege",
-                "description": "Werknemers gebruiken priv\u00e9-laptops zonder restricties.",
-                "mitigation": "Enkel beheerde apparaten toestaan, endpoint management toepassen.",
-                "modelType": "STRIDE",
-                "status": "Open",
-                "severity": "Medium",
-                "owner": "Security Consultant"
-            }
-        ]
-    }
+          ]
+        },
+        "title": "Train Work Threat Model",
+        "id": "diagram-1"
+      }
+    ]
+  }
 }
+train-threat-model.json
+4 KB
