@@ -1,16 +1,153 @@
 {
-  "version": "2.4.1",
-  "summary": {
-    "title": "test",
-    "owner": "",
-    "description": "",
-    "id": 0
-  },
-  "detail": {
-    "contributors": [],
-    "diagrams": [],
-    "diagramTop": 0,
-    "reviewer": "",
-    "threatTop": 0
-  }
+    "summary": {
+        "title": "Werken op de trein",
+        "owner": "Security Consultant",
+        "description": "Threat model voor werknemers die onderweg werken op de trein, m.b.v. STRIDE.",
+        "id": "1",
+        "version": "1.4"
+    },
+    "detail": {
+        "diagrams": [
+            {
+                "title": "Werken op de trein \u2013 Hoofddiagram",
+                "id": "1",
+                "diagramType": "STRIDE",
+                "cells": []
+            }
+        ],
+        "threats": [
+            {
+                "id": "1",
+                "title": "Vervalste WiFi-hotspot",
+                "type": "Spoofing",
+                "description": "Een aanvaller stelt een nep-WiFi-netwerk in (zoals 'Train WiFi'), zodat gebruikers onbewust verbinding maken.",
+                "mitigation": "Gebruik een VPN, forceer gebruik van bedrijfsnetwerk via vertrouwde toegangspunten.",
+                "modelType": "STRIDE",
+                "status": "Open",
+                "severity": "Medium",
+                "owner": "Security Consultant"
+            },
+            {
+                "id": "2",
+                "title": "Valse loginpagina (phishing)",
+                "type": "Spoofing",
+                "description": "Een valse MS Office 365 loginpagina wordt getoond via de nep-WiFi.",
+                "mitigation": "Gebruik van multifactor-authenticatie, domeinvalidatie en waarschuwingssystemen.",
+                "modelType": "STRIDE",
+                "status": "Open",
+                "severity": "Medium",
+                "owner": "Security Consultant"
+            },
+            {
+                "id": "3",
+                "title": "Man-in-the-middle-aanval op gegevensverkeer",
+                "type": "Tampering",
+                "description": "Verkeer via openbaar WiFi kan onderschept en gemanipuleerd worden.",
+                "mitigation": "Encryptie van alle verkeer (TLS/VPN), HSTS-policy.",
+                "modelType": "STRIDE",
+                "status": "Open",
+                "severity": "Medium",
+                "owner": "Security Consultant"
+            },
+            {
+                "id": "4",
+                "title": "Onbevoegde wijziging van documenten",
+                "type": "Tampering",
+                "description": "Bij samenwerking in MS Office kunnen kwaadwillenden wijzigingen aanbrengen.",
+                "mitigation": "Machtigingen beperken, versiebeheer en auditing inschakelen.",
+                "modelType": "STRIDE",
+                "status": "Open",
+                "severity": "Medium",
+                "owner": "Security Consultant"
+            },
+            {
+                "id": "5",
+                "title": "Ontkennen van gevoelige acties",
+                "type": "Repudiation",
+                "description": "Een gebruiker zegt gevoelige gegevens niet te hebben gedeeld.",
+                "mitigation": "Logging en auditing inschakelen, actiehistoriek bijhouden.",
+                "modelType": "STRIDE",
+                "status": "Open",
+                "severity": "Medium",
+                "owner": "Security Consultant"
+            },
+            {
+                "id": "6",
+                "title": "Afwijzing van gemaakte telefoongesprekken",
+                "type": "Repudiation",
+                "description": "Een werknemer beweert dat hij/zij een vertrouwelijk gesprek niet gevoerd heeft.",
+                "mitigation": "Telefoongesprekken met logging/metadata (geen inhoud) registreren indien wettelijk toegestaan.",
+                "modelType": "STRIDE",
+                "status": "Open",
+                "severity": "Medium",
+                "owner": "Security Consultant"
+            },
+            {
+                "id": "7",
+                "title": "Meeluisteren door andere passagiers",
+                "type": "Information Disclosure",
+                "description": "Gevoelige informatie wordt gehoord tijdens telefoongesprekken.",
+                "mitigation": "Gebruik van headsets, vermijden van gevoelige gesprekken in het openbaar.",
+                "modelType": "STRIDE",
+                "status": "Open",
+                "severity": "Medium",
+                "owner": "Security Consultant"
+            },
+            {
+                "id": "8",
+                "title": "Lezen van schermen door andere reizigers",
+                "type": "Information Disclosure",
+                "description": "Iemand kijkt mee op het scherm van een werknemer.",
+                "mitigation": "Privacyfilters, bewustzijnstraining.",
+                "modelType": "STRIDE",
+                "status": "Open",
+                "severity": "Medium",
+                "owner": "Security Consultant"
+            },
+            {
+                "id": "9",
+                "title": "Geen toegang tot documenten door slechte connectiviteit",
+                "type": "Denial of Service",
+                "description": "Slechte WiFi of VPN blokkeert werk.",
+                "mitigation": "Offline toegang tot bestanden voorzien, failover-oplossingen.",
+                "modelType": "STRIDE",
+                "status": "Open",
+                "severity": "Medium",
+                "owner": "Security Consultant"
+            },
+            {
+                "id": "10",
+                "title": "Overbelasting van VPN door veel externe gebruikers",
+                "type": "Denial of Service",
+                "description": "VPN raakt overbelast tijdens piekuren.",
+                "mitigation": "Load balancing, schaalbare cloud-VPN-oplossingen.",
+                "modelType": "STRIDE",
+                "status": "Open",
+                "severity": "Medium",
+                "owner": "Security Consultant"
+            },
+            {
+                "id": "11",
+                "title": "Toegang tot adminrechten via kwetsbaarheid in MS Office",
+                "type": "Elevation of Privilege",
+                "description": "Een kwetsbaarheid in MS Office Online wordt misbruikt.",
+                "mitigation": "Regelmatige updates, principe van minimale rechten.",
+                "modelType": "STRIDE",
+                "status": "Open",
+                "severity": "Medium",
+                "owner": "Security Consultant"
+            },
+            {
+                "id": "12",
+                "title": "Gebruik van onbeheerde apparaten met verhoogde rechten",
+                "type": "Elevation of Privilege",
+                "description": "Werknemers gebruiken priv\u00e9-laptops zonder restricties.",
+                "mitigation": "Enkel beheerde apparaten toestaan, endpoint management toepassen.",
+                "modelType": "STRIDE",
+                "status": "Open",
+                "severity": "Medium",
+                "owner": "Security Consultant"
+            }
+        ]
+    }
 }
