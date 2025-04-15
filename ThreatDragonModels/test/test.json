@@ -1,142 +1,185 @@
-{
-  "summary": {
-    "title": "Threat Model - Working on Train",
-    "owner": "Security Consultant",
-    "description": "Threat model voor werknemers die onderweg werken met MS Office Online",
-    "id": "1",
-    "diagramId": "diagram-1",
-    "version": "2.0"
-  },
-  "detail": {
-    "diagrams": [
-      {
-        "diagramJson": {
-          "cells": [
-            {
-              "id": "employee",
-              "type": "tm.Actor",
-              "position": {
-                "x": 50,
-                "y": 200
-              },
-              "size": {
-                "width": 120,
-                "height": 60
-              },
-              "attrs": {
-                "label": {
-                  "text": "Employee"
-                }
-              },
-              "z": 1
-            },
-            {
-              "id": "documentProcess",
-              "type": "tm.Process",
-              "position": {
-                "x": 250,
-                "y": 200
-              },
-              "size": {
-                "width": 180,
-                "height": 80
-              },
-              "attrs": {
-                "label": {
-                  "text": "Work on Document\n(MS Office Online)"
-                }
-              },
-              "z": 2
-            },
-            {
-              "id": "cloudStorage",
-              "type": "tm.Store",
-              "position": {
-                "x": 500,
-                "y": 100
-              },
-              "size": {
-                "width": 160,
-                "height": 60
-              },
-              "attrs": {
-                "label": {
-                  "text": "Cloud Storage\n(OneDrive/SharePoint)"
-                }
-              },
-              "z": 3
-            },
-            {
-              "id": "ms365",
-              "type": "tm.Actor",
-              "position": {
-                "x": 500,
-                "y": 300
-              },
-              "size": {
-                "width": 130,
-                "height": 60
-              },
-              "attrs": {
-                "label": {
-                  "text": "Microsoft 365"
-                }
-              },
-              "z": 4
-            },
-            {
-              "id": "flow1",
-              "type": "tm.Flow",
-              "source": {
-                "id": "employee"
-              },
-              "target": {
-                "id": "documentProcess"
-              },
-              "attrs": {
-                "label": {
-                  "text": "Data Flow"
-                }
-              },
-              "z": 5
-            },
-            {
-              "id": "flow2",
-              "type": "tm.Flow",
-              "source": {
-                "id": "documentProcess"
-              },
-              "target": {
-                "id": "cloudStorage"
-              },
-              "attrs": {
-                "label": {
-                  "text": "Data Flow"
-                }
-              },
-              "z": 6
-            },
-            {
-              "id": "flow3",
-              "type": "tm.Flow",
-              "source": {
-                "id": "documentProcess"
-              },
-              "target": {
-                "id": "ms365"
-              },
-              "attrs": {
-                "label": {
-                  "text": "Data Flow"
-                }
-              },
-              "z": 7
-            }
-          ]
+import json
+
+# Dreigingen per STRIDE-categorie
+stride_threats = {
+    "Spoofing": [
+        {
+            "name": "Vervalste WiFi-hotspot",
+            "description": "Een aanvaller stelt een nep-WiFi-netwerk in (zoals 'Train WiFi'), zodat gebruikers onbewust verbinding maken.",
+            "mitigation": "Gebruik een VPN, forceer gebruik van bedrijfsnetwerk via vertrouwde toegangspunten."
         },
-        "title": "Train Work Threat Model",
-        "id": "diagram-1"
-      }
+        {
+            "name": "Valse loginpagina (phishing)",
+            "description": "Een valse MS Office 365 loginpagina wordt getoond via de nep-WiFi.",
+            "mitigation": "Gebruik van multifactor-authenticatie, domeinvalidatie en waarschuwingssystemen."
+        }
+    ],
+    "Tampering": [
+        {
+            "name": "Man-in-the-middle-aanval op gegevensverkeer",
+            "description": "Verkeer via openbaar WiFi kan onderschept en gemanipuleerd worden.",
+            "mitigation": "Encryptie van alle verkeer (TLS/VPN), HSTS-policy."
+        },
+        {
+            "name": "Onbevoegde wijziging van documenten",
+            "description": "Bij samenwerking in MS Office kunnen kwaadwillenden wijzigingen aanbrengen.",
+            "mitigation": "Machtigingen beperken, versiebeheer en auditing inschakelen."
+        }
+    ],
+    "Repudiation": [
+        {
+            "name": "Ontkennen van gevoelige acties",
+            "description": "Een gebruiker zegt gevoelige gegevens niet te hebben gedeeld.",
+            "mitigation": "Logging en auditing inschakelen, actiehistoriek bijhouden."
+        },
+        {
+            "name": "Afwijzing van gemaakte telefoongesprekken",
+            "description": "Een werknemer beweert dat hij/zij een vertrouwelijk gesprek niet gevoerd heeft.",
+            "mitigation": "Telefoongesprekken met logging/metadata (geen inhoud) registreren indien wettelijk toegestaan."
+        }
+    ],
+    "Information Disclosure": [
+        {
+            "name": "Meeluisteren door andere passagiers",
+            "description": "Gevoelige informatie wordt gehoord tijdens telefoongesprekken.",
+            "mitigation": "Gebruik van headsets, vermijden van gevoelige gesprekken in het openbaar."
+        },
+        {
+            "name": "Lezen van schermen door andere reizigers",
+            "description": "Iemand kijkt mee op het scherm van een werknemer.",
+            "mitigation": "Privacyfilters, bewustzijnstraining."
+        }
+    ],
+    "Denial of Service": [
+        {
+            "name": "Geen toegang tot documenten door slechte connectiviteit",
+            "description": "Slechte WiFi of VPN blokkeert werk.",
+            "mitigation": "Offline toegang tot bestanden voorzien, failover-oplossingen."
+        },
+        {
+            "name": "Overbelasting van VPN door veel externe gebruikers",
+            "description": "VPN raakt overbelast tijdens piekuren.",
+            "mitigation": "Load balancing, schaalbare cloud-VPN-oplossingen."
+        }
+    ],
+    "Elevation of Privilege": [
+        {
+            "name": "Toegang tot adminrechten via kwetsbaarheid in MS Office",
+            "description": "Een kwetsbaarheid in MS Office Online wordt misbruikt.",
+            "mitigation": "Regelmatige updates, principe van minimale rechten."
+        },
+        {
+            "name": "Gebruik van onbeheerde apparaten met verhoogde rechten",
+            "description": "Werknemers gebruiken privé-laptops zonder restricties.",
+            "mitigation": "Enkel beheerde apparaten toestaan, endpoint management toepassen."
+        }
     ]
-  }
 }
+
+# Maak een bijgewerkt JSON-model met diagram-cellen
+threat_dragon_model = {
+    "summary": {
+        "title": "Werken op de trein",
+        "owner": "Security Consultant",
+        "description": "Threat model voor werknemers die onderweg werken op de trein, m.b.v. STRIDE.",
+        "id": "1",
+        "version": "1.4"
+    },
+    "detail": {
+        "diagrams": [
+            {
+                "id": "1",
+                "title": "Werken op de trein – Hoofddiagram",
+                "diagramType": "STRIDE",
+                "cells": [
+                    {
+                        "id": "cell1",
+                        "type": "actor",
+                        "value": {
+                            "label": "Werknemer op de trein"
+                        },
+                        "position": {
+                            "x": 100,
+                            "y": 100
+                        },
+                        "size": {
+                            "width": 100,
+                            "height": 50
+                        }
+                    },
+                    {
+                        "id": "cell2",
+                        "type": "process",
+                        "value": {
+                            "label": "MS Office Collaboration"
+                        },
+                        "position": {
+                            "x": 300,
+                            "y": 100
+                        },
+                        "size": {
+                            "width": 150,
+                            "height": 50
+                        }
+                    },
+                    {
+                        "id": "cell3",
+                        "type": "data-store",
+                        "value": {
+                            "label": "Bedrijfsdocumenten"
+                        },
+                        "position": {
+                            "x": 500,
+                            "y": 100
+                        },
+                        "size": {
+                            "width": 150,
+                            "height": 50
+                        }
+                    },
+                    {
+                        "id": "cell4",
+                        "type": "external-entity",
+                        "value": {
+                            "label": "Publieke WiFi"
+                        },
+                        "position": {
+                            "x": 100,
+                            "y": 300
+                        },
+                        "size": {
+                            "width": 150,
+                            "height": 50
+                        }
+                    }
+                ]
+            }
+        ],
+        "threats": []
+    }
+}
+
+# Voeg dreigingen toe als entries in de threats-lijst
+threat_id = 1
+for category, threats in stride_threats.items():
+    for threat in threats:
+        threat_entry = {
+            "id": str(threat_id),
+            "title": threat["name"],
+            "type": category,
+            "description": threat["description"],
+            "mitigation": threat["mitigation"],
+            "modelType": "STRIDE",
+            "status": "Open",
+            "severity": "Medium",
+            "owner": "Security Consultant"
+        }
+        threat_dragon_model["detail"]["threats"].append(threat_entry)
+        threat_id += 1
+
+# Sla het bijgewerkte JSON-model op
+json_output_path = "/mnt/data/threat_model_trein_updated.json"
+with open(json_output_path, "w", encoding="utf-8") as f:
+    json.dump(threat_dragon_model, f, indent=4)
+
+print(f"JSON-model opgeslagen: {json_output_path}")
