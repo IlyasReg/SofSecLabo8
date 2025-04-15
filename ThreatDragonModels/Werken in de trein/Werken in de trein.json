@@ -1,177 +1,264 @@
 {
-    "summary": {
-        "title": "Werken op de trein",
-        "owner": "Security Consultant",
-        "description": "Threat model voor werknemers die onderweg werken op de trein, m.b.v. STRIDE.",
+  "summary": {
+    "title": "Threat Model - Werken op de trein",
+    "owner": "Security Consultant",
+    "description": "Threat model voor werknemers die onderweg werken op de trein, m.b.v. STRIDE.",
+    "id": "1",
+    "diagramId": "diagram-1",
+    "version": "2.0"
+  },
+  "detail": {
+    "diagrams": [
+      {
+        "id": "diagram-1",
+        "title": "Train Work Threat Model",
+        "diagramJson": {
+          "cells": [
+            {
+              "id": "employee",
+              "type": "tm.Actor",
+              "position": {
+                "x": 50,
+                "y": 200
+              },
+              "size": {
+                "width": 120,
+                "height": 60
+              },
+              "attrs": {
+                "label": {
+                  "text": "Werknemer op de trein"
+                }
+              },
+              "z": 1
+            },
+            {
+              "id": "msOffice",
+              "type": "tm.Process",
+              "position": {
+                "x": 250,
+                "y": 200
+              },
+              "size": {
+                "width": 180,
+                "height": 80
+              },
+              "attrs": {
+                "label": {
+                  "text": "Documentbewerking\n(MS Office Online)"
+                }
+              },
+              "z": 2
+            },
+            {
+              "id": "cloud",
+              "type": "tm.Store",
+              "position": {
+                "x": 500,
+                "y": 100
+              },
+              "size": {
+                "width": 160,
+                "height": 60
+              },
+              "attrs": {
+                "label": {
+                  "text": "Cloudopslag\n(OneDrive/SharePoint)"
+                }
+              },
+              "z": 3
+            },
+            {
+              "id": "ms365",
+              "type": "tm.Actor",
+              "position": {
+                "x": 500,
+                "y": 300
+              },
+              "size": {
+                "width": 130,
+                "height": 60
+              },
+              "attrs": {
+                "label": {
+                  "text": "Microsoft 365"
+                }
+              },
+              "z": 4
+            },
+            {
+              "id": "flow1",
+              "type": "tm.Flow",
+              "source": {
+                "id": "employee"
+              },
+              "target": {
+                "id": "msOffice"
+              },
+              "attrs": {
+                "label": {
+                  "text": "Gegevensstroom"
+                }
+              },
+              "z": 5
+            },
+            {
+              "id": "flow2",
+              "type": "tm.Flow",
+              "source": {
+                "id": "msOffice"
+              },
+              "target": {
+                "id": "cloud"
+              },
+              "attrs": {
+                "label": {
+                  "text": "Document upload"
+                }
+              },
+              "z": 6
+            },
+            {
+              "id": "flow3",
+              "type": "tm.Flow",
+              "source": {
+                "id": "msOffice"
+              },
+              "target": {
+                "id": "ms365"
+              },
+              "attrs": {
+                "label": {
+                  "text": "Data naar Microsoft 365"
+                }
+              },
+              "z": 7
+            }
+          ]
+        }
+      }
+    ],
+    "threats": [
+      {
         "id": "1",
-        "version": "1.4"
-    },
-    "detail": {
-        "diagrams": [
-            {
-                "id": "1",
-                "title": "Werken op de trein – Hoofddiagram",
-                "cells": [
-                    {
-                        "id": "cell1",
-                        "type": "actor",
-                        "label": "Werknemer op de trein",
-                        "x": 100,
-                        "y": 100,
-                        "width": 100,
-                        "height": 50
-                    },
-                    {
-                        "id": "cell2",
-                        "type": "process",
-                        "label": "MS Office Collaboration",
-                        "x": 300,
-                        "y": 100,
-                        "width": 150,
-                        "height": 50
-                    },
-                    {
-                        "id": "cell3",
-                        "type": "data-store",
-                        "label": "Bedrijfsdocumenten",
-                        "x": 500,
-                        "y": 100,
-                        "width": 150,
-                        "height": 50
-                    },
-                    {
-                        "id": "cell4",
-                        "type": "external-entity",
-                        "label": "Publieke WiFi",
-                        "x": 100,
-                        "y": 300,
-                        "width": 150,
-                        "height": 50
-                    }
-                ]
-            }
-        ],
-        "threats": [
-            {
-                "id": "1",
-                "title": "Vervalste WiFi-hotspot",
-                "type": "Spoofing",
-                "description": "Een aanvaller stelt een nep-WiFi-netwerk in (zoals 'Train WiFi'), zodat gebruikers onbewust verbinding maken.",
-                "mitigation": "Gebruik een VPN, forceer gebruik van bedrijfsnetwerk via vertrouwde toegangspunten.",
-                "severity": "Medium",
-                "status": "Open",
-                "owner": "Security Consultant"
-            },
-            {
-                "id": "2",
-                "title": "Valse loginpagina (phishing)",
-                "type": "Spoofing",
-                "description": "Een valse MS Office 365 loginpagina wordt getoond via de nep-WiFi.",
-                "mitigation": "Gebruik van multifactor-authenticatie, domeinvalidatie en waarschuwingssystemen.",
-                "severity": "Medium",
-                "status": "Open",
-                "owner": "Security Consultant"
-            },
-            {
-                "id": "3",
-                "title": "Man-in-the-middle-aanval op gegevensverkeer",
-                "type": "Tampering",
-                "description": "Verkeer via openbaar WiFi kan onderschept en gemanipuleerd worden.",
-                "mitigation": "Encryptie van alle verkeer (TLS/VPN), HSTS-policy.",
-                "severity": "Medium",
-                "status": "Open",
-                "owner": "Security Consultant"
-            },
-            {
-                "id": "4",
-                "title": "Onbevoegde wijziging van documenten",
-                "type": "Tampering",
-                "description": "Bij samenwerking in MS Office kunnen kwaadwillenden wijzigingen aanbrengen.",
-                "mitigation": "Machtigingen beperken, versiebeheer en auditing inschakelen.",
-                "severity": "Medium",
-                "status": "Open",
-                "owner": "Security Consultant"
-            },
-            {
-                "id": "5",
-                "title": "Ontkennen van gevoelige acties",
-                "type": "Repudiation",
-                "description": "Een gebruiker zegt gevoelige gegevens niet te hebben gedeeld.",
-                "mitigation": "Logging en auditing inschakelen, actiehistoriek bijhouden.",
-                "severity": "Medium",
-                "status": "Open",
-                "owner": "Security Consultant"
-            },
-            {
-                "id": "6",
-                "title": "Afwijzing van gemaakte telefoongesprekken",
-                "type": "Repudiation",
-                "description": "Een werknemer beweert dat hij/zij een vertrouwelijk gesprek niet gevoerd heeft.",
-                "mitigation": "Telefoongesprekken met logging/metadata (geen inhoud) registreren indien wettelijk toegestaan.",
-                "severity": "Medium",
-                "status": "Open",
-                "owner": "Security Consultant"
-            },
-            {
-                "id": "7",
-                "title": "Meeluisteren door andere passagiers",
-                "type": "Information Disclosure",
-                "description": "Gevoelige informatie wordt gehoord tijdens telefoongesprekken.",
-                "mitigation": "Gebruik van headsets, vermijden van gevoelige gesprekken in het openbaar.",
-                "severity": "Medium",
-                "status": "Open",
-                "owner": "Security Consultant"
-            },
-            {
-                "id": "8",
-                "title": "Lezen van schermen door andere reizigers",
-                "type": "Information Disclosure",
-                "description": "Iemand kijkt mee op het scherm van een werknemer.",
-                "mitigation": "Privacyfilters, bewustzijnstraining.",
-                "severity": "Medium",
-                "status": "Open",
-                "owner": "Security Consultant"
-            },
-            {
-                "id": "9",
-                "title": "Geen toegang tot documenten door slechte connectiviteit",
-                "type": "Denial of Service",
-                "description": "Slechte WiFi of VPN blokkeert werk.",
-                "mitigation": "Offline toegang tot bestanden voorzien, failover-oplossingen.",
-                "severity": "Medium",
-                "status": "Open",
-                "owner": "Security Consultant"
-            },
-            {
-                "id": "10",
-                "title": "Overbelasting van VPN door veel externe gebruikers",
-                "type": "Denial of Service",
-                "description": "VPN raakt overbelast tijdens piekuren.",
-                "mitigation": "Load balancing, schaalbare cloud-VPN-oplossingen.",
-                "severity": "Medium",
-                "status": "Open",
-                "owner": "Security Consultant"
-            },
-            {
-                "id": "11",
-                "title": "Toegang tot adminrechten via kwetsbaarheid in MS Office",
-                "type": "Elevation of Privilege",
-                "description": "Een kwetsbaarheid in MS Office Online wordt misbruikt.",
-                "mitigation": "Regelmatige updates, principe van minimale rechten.",
-                "severity": "Medium",
-                "status": "Open",
-                "owner": "Security Consultant"
-            },
-            {
-                "id": "12",
-                "title": "Gebruik van onbeheerde apparaten met verhoogde rechten",
-                "type": "Elevation of Privilege",
-                "description": "Werknemers gebruiken privé-laptops zonder restricties.",
-                "mitigation": "Enkel beheerde apparaten toestaan, endpoint management toepassen.",
-                "severity": "Medium",
-                "status": "Open",
-                "owner": "Security Consultant"
-            }
-        ]
-    }
+        "title": "Vervalste WiFi-hotspot",
+        "type": "Spoofing",
+        "description": "Een aanvaller creëert een nep-WiFi-netwerk zodat gebruikers verbinding maken met een onbetrouwbare hotspot.",
+        "mitigation": "Gebruik VPN en forceer verbinding met bekende bedrijfsnetwerken.",
+        "severity": "Medium",
+        "status": "Open",
+        "owner": "Security Consultant"
+      },
+      {
+        "id": "2",
+        "title": "Valse loginpagina (phishing)",
+        "type": "Spoofing",
+        "description": "Een nep-inlogpagina wordt getoond via de nep-WiFi.",
+        "mitigation": "Gebruik multifactor-authenticatie en controleer de domeinvaliditeit.",
+        "severity": "Medium",
+        "status": "Open",
+        "owner": "Security Consultant"
+      },
+      {
+        "id": "3",
+        "title": "Man-in-the-Middle aanval",
+        "type": "Tampering",
+        "description": "Gegevens op de verbinding kunnen worden onderschept en gemanipuleerd.",
+        "mitigation": "Gebruik TLS/VPN en implementeer HSTS.",
+        "severity": "Medium",
+        "status": "Open",
+        "owner": "Security Consultant"
+      },
+      {
+        "id": "4",
+        "title": "Onbevoegde wijziging van documenten",
+        "type": "Tampering",
+        "description": "Aanvallers kunnen samenwerken in MS Office documents wijzigen.",
+        "mitigation": "Beperk gebruikersrechten en implementeer versiebeheer.",
+        "severity": "Medium",
+        "status": "Open",
+        "owner": "Security Consultant"
+      },
+      {
+        "id": "5",
+        "title": "Ontkenning van acties",
+        "type": "Repudiation",
+        "description": "Gebruikers ontkennen het uitvoeren van acties, zoals het delen van gevoelige informatie.",
+        "mitigation": "Implementeer uitgebreide logging en audit trails.",
+        "severity": "Medium",
+        "status": "Open",
+        "owner": "Security Consultant"
+      },
+      {
+        "id": "6",
+        "title": "Afwijzing van telefoongesprekken",
+        "type": "Repudiation",
+        "description": "Werknemers ontkennen vertrouwelijke gesprekken te hebben gevoerd.",
+        "mitigation": "Gebruik metadata logging waar wettelijk toegestaan.",
+        "severity": "Medium",
+        "status": "Open",
+        "owner": "Security Consultant"
+      },
+      {
+        "id": "7",
+        "title": "Meeluisteren door derden",
+        "type": "Information Disclosure",
+        "description": "Gevoelige informatie kan worden afgeluisterd tijdens gesprekken.",
+        "mitigation": "Gebruik headsets en beperk vertrouwelijke gesprekken in openbare ruimten.",
+        "severity": "Medium",
+        "status": "Open",
+        "owner": "Security Consultant"
+      },
+      {
+        "id": "8",
+        "title": "Over-the-shoulder kijken",
+        "type": "Information Disclosure",
+        "description": "Iemand kan meekijken op het scherm van een werknemer.",
+        "mitigation": "Gebruik privacyfilters en voorlichting aan gebruikers.",
+        "severity": "Medium",
+        "status": "Open",
+        "owner": "Security Consultant"
+      },
+      {
+        "id": "9",
+        "title": "Slechte connectiviteit",
+        "type": "Denial of Service",
+        "description": "Slechte verbinding kan toegang tot bedrijfsdocumenten verhinderen.",
+        "mitigation": "Voorzie in offline toegang en failover-mechanismen.",
+        "severity": "Medium",
+        "status": "Open",
+        "owner": "Security Consultant"
+      },
+      {
+        "id": "10",
+        "title": "VPN overbelasting",
+        "type": "Denial of Service",
+        "description": "Te veel gelijktijdige VPN-gebruikers kunnen de verbinding overbelasten.",
+        "mitigation": "Implementeer load balancing en schaalbare VPN-oplossingen.",
+        "severity": "Medium",
+        "status": "Open",
+        "owner": "Security Consultant"
+      },
+      {
+        "id": "11",
+        "title": "Escalatie van privileges via MS Office kwetsbaarheid",
+        "type": "Elevation of Privilege",
+        "description": "Kwetsbaarheden in MS Office Online kunnen leiden tot ongeautoriseerde toegang tot hogere rechten.",
+        "mitigation": "Voer regelmatige updates en beperk rechten strikt toe.",
+        "severity": "Medium",
+        "status": "Open",
+        "owner": "Security Consultant"
+      },
+      {
+        "id": "12",
+        "title": "Onbeheerde apparaten",
+        "type": "Elevation of Privilege",
+        "description": "Persoonlijke apparaten met onvoldoende beheer kunnen misbruikt worden voor escalatie van privileges.",
+        "mitigation": "Sta alleen het gebruik van beheerde apparaten toe en implementeer endpoint management.",
+        "severity": "Medium",
+        "status": "Open",
+        "owner": "Security Consultant"
+      }
+    ]
+  }
 }
