@@ -71,7 +71,7 @@
             "mitigation": "Enkel beheerde apparaten toestaan, endpoint management toepassen."
         }
     ]
-}
+
 
     "summary": {
         "title": "Werken op de trein",
@@ -152,5 +152,5 @@
         ],
         "threats": []
     }
-}
+
 
