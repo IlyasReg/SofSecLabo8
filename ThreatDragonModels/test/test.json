@@ -1,7 +1,4 @@
-import json
 
-# Dreigingen per STRIDE-categorie
-stride_threats = {
     "Spoofing": [
         {
             "name": "Vervalste WiFi-hotspot",
@@ -159,27 +156,3 @@ threat_dragon_model = {
     }
 }
 
-# Voeg dreigingen toe als entries in de threats-lijst
-threat_id = 1
-for category, threats in stride_threats.items():
-    for threat in threats:
-        threat_entry = {
-            "id": str(threat_id),
-            "title": threat["name"],
-            "type": category,
-            "description": threat["description"],
-            "mitigation": threat["mitigation"],
-            "modelType": "STRIDE",
-            "status": "Open",
-            "severity": "Medium",
-            "owner": "Security Consultant"
-        }
-        threat_dragon_model["detail"]["threats"].append(threat_entry)
-        threat_id += 1
-
-# Sla het bijgewerkte JSON-model op
-json_output_path = "/mnt/data/threat_model_trein_updated.json"
-with open(json_output_path, "w", encoding="utf-8") as f:
-    json.dump(threat_dragon_model, f, indent=4)
-
-print(f"JSON-model opgeslagen: {json_output_path}")
