@@ -38,6 +38,7 @@
             },
             "visible": true,
             "shape": "actor",
+            "zIndex": 1,
             "ports": {
               "groups": {
                 "top": {
@@ -121,7 +122,6 @@
               ]
             },
             "id": "eb605f2c-1069-49c4-8908-89ebfd9b8146",
-            "zIndex": 1,
             "data": {
               "type": "tm.Actor",
               "name": "werknemer",
@@ -390,6 +390,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 11,
             "ports": {
               "groups": {
                 "top": {
@@ -473,7 +474,6 @@
               ]
             },
             "id": "532c3eec-2a25-42c4-a639-fcb0a8172faf",
-            "zIndex": 11,
             "data": {
               "type": "tm.Process",
               "name": "laptop",
@@ -560,6 +560,7 @@
             },
             "visible": true,
             "shape": "store",
+            "zIndex": 12,
             "ports": {
               "groups": {
                 "top": {
@@ -643,7 +644,6 @@
               ]
             },
             "id": "f46a9486-eaed-447f-9491-f47a94dadd35",
-            "zIndex": 12,
             "data": {
               "type": "tm.Store",
               "name": "Bedrijfsdocumenten",
@@ -689,6 +689,7 @@
             },
             "visible": true,
             "shape": "store",
+            "zIndex": 13,
             "ports": {
               "groups": {
                 "top": {
@@ -772,7 +773,6 @@
               ]
             },
             "id": "29341afa-66bc-442b-9f7f-18dbded457bf",
-            "zIndex": 13,
             "data": {
               "type": "tm.Store",
               "name": "Microsoft 365",
@@ -809,6 +809,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 14,
             "ports": {
               "groups": {
                 "top": {
@@ -892,7 +893,6 @@
               ]
             },
             "id": "79d61255-173a-485e-8f3a-dc5d791f075e",
-            "zIndex": 14,
             "data": {
               "type": "tm.Process",
               "name": "Documentbewerking,\nOffice,\nTelefoongesprekken",
@@ -976,6 +976,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 15,
             "ports": {
               "groups": {
                 "top": {
@@ -1059,7 +1060,6 @@
               ]
             },
             "id": "ea063523-c73b-478c-b90e-f49a314035a0",
-            "zIndex": 15,
             "data": {
               "type": "tm.Process",
               "name": "Cloud server",
