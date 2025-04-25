@@ -19,8 +19,29 @@
         "cells": [
           {
             "position": {
-              "x": 150,
-              "y": 120
+              "x": 359.9999999999993,
+              "y": 100.00000000000153
+            },
+            "size": {
+              "width": 600,
+              "height": 330
+            },
+            "visible": true,
+            "shape": "trust-boundary-box",
+            "id": "b48c9b68-5eac-42aa-b88d-a9c96a47d1d6",
+            "zIndex": -1,
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "Trust Boundary",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 120,
+              "y": 135
             },
             "size": {
               "width": 112.5,
@@ -31,8 +52,8 @@
                 "text": "werknemer"
               },
               "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -128,11 +149,25 @@
               "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "providesAuthentication": false,
-              "threats": [],
+              "threats": [
+                {
+                  "id": "961bdb49-854d-4bb1-92ec-b303c5b74012",
+                  "title": "Onbevoegde persoon gebruikt laptop",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Spoofing",
+                  "description": "Iemand gebruikt de onbeheerde laptop op de trein en doet zich voor als werknemer.",
+                  "mitigation": " Automatische schermvergrendeling, sterke wachtwoorden, biometrie.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 28,
+                  "score": ""
+                }
+              ],
               "threatFrequency": {
-                "spoofing": 0,
+                "spoofing": 1,
                 "repudiation": 0
               }
             }
@@ -171,63 +206,23 @@
             "labels": [
               "Data Flow"
             ],
-            "id": "5bdaca96-4a0c-4f27-8941-39658b5f7c5d",
+            "id": "66dda836-dc00-41df-8959-ee2fbcaf19db",
             "source": {
-              "x": 280,
-              "y": 140
+              "x": 874,
+              "y": 180
             },
             "target": {
-              "cell": "532c3eec-2a25-42c4-a639-fcb0a8172faf",
-              "port": "0694a446-e58b-4d5e-b47e-05591dc4c55f"
-            }
-          },
-          {
-            "shape": "flow",
-            "attrs": {
-              "line": {
-                "stroke": "#333333",
-                "targetMarker": {
-                  "name": "block"
-                },
-                "sourceMarker": {
-                  "name": ""
-                },
-                "strokeDasharray": null
-              }
-            },
-            "width": 200,
-            "height": 100,
-            "zIndex": 10,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Flow",
-              "name": "Data Flow",
-              "description": "",
-              "outOfScope": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": false,
-              "isBidirectional": false,
-              "isEncrypted": false,
-              "isPublicNetwork": false,
-              "protocol": "",
-              "threats": []
-            },
-            "labels": [
-              "Data Flow"
-            ],
-            "id": "a3fe5fba-a286-4294-bf6a-7a26a052377a",
-            "source": {
-              "x": 452,
-              "y": 185
-            },
-            "target": {
-              "cell": "79d61255-173a-485e-8f3a-dc5d791f075e",
-              "port": "a65ddc07-a9aa-4853-bb6d-8655cc40d7ea"
+              "cell": "29341afa-66bc-442b-9f7f-18dbded457bf",
+              "port": "8045005d-2b12-43dc-8dc2-56b892791124"
             },
             "vertices": [
               {
-                "x": 452,
-                "y": 260
+                "x": 874,
+                "y": 200
+              },
+              {
+                "x": 850,
+                "y": 230
               }
             ]
           },
@@ -235,7 +230,8 @@
             "shape": "flow",
             "attrs": {
               "line": {
-                "stroke": "#333333",
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "targetMarker": {
                   "name": "block"
                 },
@@ -255,20 +251,122 @@
               "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "isBidirectional": false,
               "isEncrypted": false,
               "isPublicNetwork": false,
               "protocol": "",
-              "threats": []
+              "threats": [
+                {
+                  "id": "3aba6964-fde4-413b-8b76-61aee0c9ca3c",
+                  "title": "Synchronisatie mislukt door netwerkproblemen",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Denial of service",
+                  "description": "Door lage bandbreedte kan Microsoft 365 documenten niet synchroniseren.",
+                  "mitigation": "Synchronisatie retries, foutafhandeling in app.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 23,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 0,
+                "informationDisclosure": 0,
+                "denialOfService": 1
+              }
+            },
+            "labels": [
+              "Data Flow"
+            ],
+            "id": "088655a6-9940-465b-9575-8dc4b4783ed4",
+            "source": {
+              "cell": "ea063523-c73b-478c-b90e-f49a314035a0",
+              "port": "06bc51d1-bdc1-4570-bd58-2e3500c6f826"
+            },
+            "target": {
+              "cell": "f46a9486-eaed-447f-9491-f47a94dadd35",
+              "port": "7e1b16bf-62a5-4f30-9fee-53baf4b1beac"
+            },
+            "vertices": [
+              {
+                "x": 750,
+                "y": 165
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Data Flow",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "e47866e5-1d34-48b5-be9e-d495f2d612e6",
+                  "title": "Man-in-the-middle wijzigt data",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Tampering",
+                  "description": "Gegevens worden aangepast tijdens verzending door een kwaadwillige tussenpartij.",
+                  "mitigation": "Gebruik van VPN of TLS, encryptie in transit.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 16,
+                  "score": ""
+                },
+                {
+                  "id": "cd707d00-164c-4ed7-8c85-e06465ee37ba",
+                  "title": "Onversleutelde gegevens verstuurd",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Information disclosure",
+                  "description": "Informatie wordt in platte tekst verzonden via publieke WiFi.",
+                  "mitigation": "Encryptie gebruiken, altijd VPN verplichten op openbaar netwerk.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 20,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 1,
+                "informationDisclosure": 1,
+                "denialOfService": 0
+              }
             },
             "labels": [
               "Data Flow"
             ],
             "id": "724c3181-dfd6-4867-b4f9-0ff2e4c333f2",
             "source": {
-              "x": 470,
-              "y": 173
+              "cell": "532c3eec-2a25-42c4-a639-fcb0a8172faf",
+              "port": "06bc51d1-bdc1-4570-bd58-2e3500c6f826"
             },
             "target": {
               "cell": "ea063523-c73b-478c-b90e-f49a314035a0",
@@ -276,8 +374,86 @@
             },
             "vertices": [
               {
-                "x": 510,
+                "x": 540,
                 "y": 173
+              },
+              {
+                "x": 570,
+                "y": 160
+              },
+              {
+                "x": 590,
+                "y": 160
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Data Flow",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "ca05cf25-2e88-4d4c-93a8-66000f71587c",
+                  "title": "Gevoelige info wordt meegelezen op scherm",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Information disclosure",
+                  "description": "Mensen op de trein lezen mee op het laptopscherm.",
+                  "mitigation": "Gebruik een privacyfilter of donkere modus, vermijd vertrouwelijk werk in openbaar vervoer.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 22,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 0,
+                "informationDisclosure": 1,
+                "denialOfService": 0
+              }
+            },
+            "labels": [
+              "Data Flow"
+            ],
+            "id": "578b5ecf-441f-4a51-ba77-9785ee98b998",
+            "source": {
+              "x": 420,
+              "y": 190
+            },
+            "target": {
+              "cell": "79d61255-173a-485e-8f3a-dc5d791f075e",
+              "port": "a65ddc07-a9aa-4853-bb6d-8655cc40d7ea"
+            },
+            "vertices": [
+              {
+                "x": 470,
+                "y": 240
               }
             ]
           },
@@ -305,74 +481,50 @@
               "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "isBidirectional": false,
               "isEncrypted": false,
               "isPublicNetwork": false,
               "protocol": "",
-              "threats": []
+              "threats": [
+                {
+                  "id": "2e4d443d-f08e-46f7-8ae8-0ddb3153bc95",
+                  "title": "New STRIDE threat",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Tampering",
+                  "description": "Provide a description for this threat",
+                  "mitigation": "Provide remediation for this threat or a reason if status is N/A",
+                  "modelType": "STRIDE",
+                  "new": true,
+                  "number": 27,
+                  "score": ""
+                }
+              ]
             },
             "labels": [
               "Data Flow"
             ],
-            "id": "66dda836-dc00-41df-8959-ee2fbcaf19db",
+            "id": "d5fe419b-987c-40d7-83a7-1123767cf430",
             "source": {
-              "x": 854,
-              "y": 180
+              "cell": "eb605f2c-1069-49c4-8908-89ebfd9b8146",
+              "port": "f8e780ca-2267-4b1d-940b-9cbcbb37372a"
             },
             "target": {
-              "cell": "29341afa-66bc-442b-9f7f-18dbded457bf",
-              "port": "8045005d-2b12-43dc-8dc2-56b892791124"
-            }
-          },
-          {
-            "shape": "flow",
-            "attrs": {
-              "line": {
-                "stroke": "#333333",
-                "targetMarker": {
-                  "name": "block"
-                },
-                "sourceMarker": {
-                  "name": ""
-                },
-                "strokeDasharray": null
+              "cell": "532c3eec-2a25-42c4-a639-fcb0a8172faf",
+              "port": "0694a446-e58b-4d5e-b47e-05591dc4c55f"
+            },
+            "vertices": [
+              {
+                "x": 350,
+                "y": 156
               }
-            },
-            "width": 200,
-            "height": 100,
-            "zIndex": 10,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Flow",
-              "name": "Data Flow",
-              "description": "",
-              "outOfScope": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": false,
-              "isBidirectional": false,
-              "isEncrypted": false,
-              "isPublicNetwork": false,
-              "protocol": "",
-              "threats": []
-            },
-            "labels": [
-              "Data Flow"
-            ],
-            "id": "088655a6-9940-465b-9575-8dc4b4783ed4",
-            "source": {
-              "x": 698,
-              "y": 160
-            },
-            "target": {
-              "cell": "f46a9486-eaed-447f-9491-f47a94dadd35",
-              "port": "7e1b16bf-62a5-4f30-9fee-53baf4b1beac"
-            }
+            ]
           },
           {
             "position": {
-              "x": 400,
-              "y": 115
+              "x": 370,
+              "y": 125
             },
             "size": {
               "width": 80,
@@ -380,7 +532,7 @@
             },
             "attrs": {
               "text": {
-                "text": "laptop"
+                "text": "pc"
               },
               "body": {
                 "stroke": "red",
@@ -476,7 +628,7 @@
             "id": "532c3eec-2a25-42c4-a639-fcb0a8172faf",
             "data": {
               "type": "tm.Process",
-              "name": "laptop",
+              "name": "pc",
               "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
@@ -500,19 +652,6 @@
                   "score": ""
                 },
                 {
-                  "id": "3c98a6ed-1021-4a06-ad3b-b5d2de24216e",
-                  "title": "Onbevoegde gebruiker simuleert werknemer",
-                  "status": "Open",
-                  "severity": "TBD",
-                  "type": "Spoofing",
-                  "description": " Iemand gebruikt de laptop van de werknemer zonder toestemming.",
-                  "mitigation": " Stel automatische vergrendeling in, gebruik sterke wachtwoorden en tweefactorauthenticatie.",
-                  "modelType": "STRIDE",
-                  "new": false,
-                  "number": 7,
-                  "score": ""
-                },
-                {
                   "id": "ced4108d-41da-4f46-8a8c-487742e263fd",
                   "title": "Onversleutelde communicatie naar cloud",
                   "status": "Open",
@@ -523,6 +662,19 @@
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 9,
+                  "score": ""
+                },
+                {
+                  "id": "a61300c3-af60-4cf7-a1c1-2ea5a587c0c7",
+                  "title": "Valse Office 365 loginpagina",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Spoofing",
+                  "description": "De gebruiker opent een nep-website en voert zijn gegevens in.",
+                  "mitigation": "MFA activeren, anti-phishingtraining, linkcontrole.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 29,
                   "score": ""
                 }
               ],
@@ -538,8 +690,8 @@
           },
           {
             "position": {
-              "x": 810,
-              "y": 120
+              "x": 820,
+              "y": 125
             },
             "size": {
               "width": 120,
@@ -550,11 +702,13 @@
                 "text": "Bedrijfsdocumenten"
               },
               "topLine": {
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               },
               "bottomLine": {
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -650,15 +804,29 @@
               "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "isALog": false,
               "isEncrypted": false,
               "isSigned": false,
               "storesCredentials": false,
               "storesInventory": false,
-              "threats": [],
+              "threats": [
+                {
+                  "id": "afaaa6b5-9d84-4d70-903c-dcbd453292c5",
+                  "title": "Bestanden worden gewijzigd zonder toestemming",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Tampering",
+                  "description": "Een aanvaller met toegang tot cloud server past documenten aan.",
+                  "mitigation": "Logging van wijzigingen, versies bijhouden, toegangsbeheer.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 17,
+                  "score": ""
+                }
+              ],
               "threatFrequency": {
-                "tampering": 0,
+                "tampering": 1,
                 "repudiation": 0,
                 "informationDisclosure": 0,
                 "denialOfService": 0
@@ -667,8 +835,8 @@
           },
           {
             "position": {
-              "x": 750,
-              "y": 310
+              "x": 790,
+              "y": 280
             },
             "size": {
               "width": 120,
@@ -679,11 +847,13 @@
                 "text": "Microsoft 365"
               },
               "topLine": {
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               },
               "bottomLine": {
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -779,19 +949,39 @@
               "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "isALog": false,
               "isEncrypted": false,
               "isSigned": false,
               "storesCredentials": false,
               "storesInventory": false,
-              "threats": []
+              "threats": [
+                {
+                  "id": "b44eedb7-70ef-4dfa-b4fb-15556662b752",
+                  "title": "Ontraceerbare toegang tot documenten",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Repudiation",
+                  "description": "Er is geen registratie wie welk document opende.",
+                  "mitigation": " Microsoft 365 auditing activeren, toegangslogs bewaren.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 21,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 0,
+                "repudiation": 1,
+                "informationDisclosure": 0,
+                "denialOfService": 0
+              }
             }
           },
           {
             "position": {
-              "x": 345,
-              "y": 310
+              "x": 360,
+              "y": 300
             },
             "size": {
               "width": 210,
@@ -919,19 +1109,6 @@
                   "score": ""
                 },
                 {
-                  "id": "c36b1798-b5c1-41cf-a9c8-8c58ca60e3a3",
-                  "title": "Valse Office 365 webinterface",
-                  "status": "Open",
-                  "severity": "TBD",
-                  "type": "Spoofing",
-                  "description": "Gebruiker voert inloggegevens in op een valse website.",
-                  "mitigation": "Gebruik tweefactorauthenticatie, URL-controle en anti-phishingmaatregelen.",
-                  "modelType": "STRIDE",
-                  "new": false,
-                  "number": 13,
-                  "score": ""
-                },
-                {
                   "id": "03d11e79-c3e2-4b57-8949-974d5e704da5",
                   "title": "Opname telefoongesprekken",
                   "status": "Open",
@@ -943,10 +1120,23 @@
                   "new": false,
                   "number": 14,
                   "score": ""
+                },
+                {
+                  "id": "7f4ed1b5-df2c-49c0-a8a5-46e73bbc5c36",
+                  "title": "New STRIDE threat",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Tampering",
+                  "description": "Provide a description for this threat",
+                  "mitigation": "Provide remediation for this threat or a reason if status is N/A",
+                  "modelType": "STRIDE",
+                  "new": true,
+                  "number": 26,
+                  "score": ""
                 }
               ],
               "threatFrequency": {
-                "spoofing": 1,
+                "spoofing": 0,
                 "tampering": 0,
                 "repudiation": 0,
                 "informationDisclosure": 1,
@@ -957,8 +1147,8 @@
           },
           {
             "position": {
-              "x": 598,
-              "y": 120
+              "x": 618,
+              "y": 125
             },
             "size": {
               "width": 90,
